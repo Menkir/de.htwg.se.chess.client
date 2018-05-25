@@ -166,64 +166,64 @@ public class Client extends JFrame {
                     gamefield.add(turm, JLayeredPane.DEFAULT_LAYER.intValue());
                 }
 
-                Knight laeufer;
+                Knight knight;
                 if((i == 1 || i == 6) && j == 0){
-                    laeufer = new Knight(WHITE);
-                    laeufer.setBounds(pos+i*size,pos+j*size,size,size);
-                    laeufer.addMouseListener(chesslistener);
-                    gamefield.add(laeufer, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = laeufer;
+                    knight = new Knight(WHITE);
+                    knight.setBounds(pos+i*size,pos+j*size,size,size);
+                    knight.addMouseListener(chesslistener);
+                    gamefield.add(knight, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = knight;
                 }else if((i == 1 || i == 6) && j == 7){
-                    laeufer = new Knight(BLACK);
-                    laeufer.setBounds(pos+i*size,pos+j*size,size,size);
-                    laeufer.addMouseListener(chesslistener);
-                    gamefield.add(laeufer, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = laeufer;
+                    knight = new Knight(BLACK);
+                    knight.setBounds(pos+i*size,pos+j*size,size,size);
+                    knight.addMouseListener(chesslistener);
+                    gamefield.add(knight, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = knight;
                 }
 
-                Bishop offizier;
+                Bishop bishop;
                 if((i == 2 || i == 5) && j == 0){
-                    offizier= new Bishop(WHITE);
-                    offizier.setBounds(pos+i*size,pos+j*size,size,size);
-                    offizier.addMouseListener(chesslistener);
-                    gamefield.add(offizier, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = offizier;
+                    bishop= new Bishop(WHITE);
+                    bishop.setBounds(pos+i*size,pos+j*size,size,size);
+                    bishop.addMouseListener(chesslistener);
+                    gamefield.add(bishop, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = bishop;
                 }else if((i == 2 || i == 5) && j == 7){
-                    offizier= new Bishop(BLACK);
-                    offizier.setBounds(pos+i*size,pos+j*size,size,size);
-                    offizier.addMouseListener(chesslistener);
-                    gamefield.add(offizier, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = offizier;
+                    bishop= new Bishop(BLACK);
+                    bishop.setBounds(pos+i*size,pos+j*size,size,size);
+                    bishop.addMouseListener(chesslistener);
+                    gamefield.add(bishop, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = bishop;
                 }
 
-                King koenig;
+                King king;
                 if(i == 3 && j == 0){
-                    koenig = new King(WHITE);
-                    koenig.setBounds(pos+i*size,pos+j*size,size,size);
-                    koenig.addMouseListener(chesslistener);
-                    gamefield.add(koenig, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = koenig;
+                    king = new King(WHITE);
+                    king.setBounds(pos+i*size,pos+j*size,size,size);
+                    king.addMouseListener(chesslistener);
+                    gamefield.add(king, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = king;
                 } else if(i == 3 && j == 7){
-                    koenig = new King(BLACK);
-                    koenig.setBounds(pos+i*size,pos+j*size,size,size);
-                    koenig.addMouseListener(chesslistener);
-                    gamefield.add(koenig, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = koenig;
+                    king = new King(BLACK);
+                    king.setBounds(pos+i*size,pos+j*size,size,size);
+                    king.addMouseListener(chesslistener);
+                    gamefield.add(king, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = king;
                 }
 
-                Queen dame;
+                Queen queen;
                 if(i == 4 && j == 0){
-                    dame = new Queen(WHITE);
-                    dame.setBounds(pos+i*size,pos+j*size,size,size);
-                    dame.addMouseListener(chesslistener);
-                    gamefield.add(dame, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = dame;
+                    queen = new Queen(WHITE);
+                    queen.setBounds(pos+i*size,pos+j*size,size,size);
+                    queen.addMouseListener(chesslistener);
+                    gamefield.add(queen, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = queen;
                 } else if(i == 4 && j == 7){
-                    dame = new Queen(BLACK);
-                    dame.setBounds(pos+i*size,pos+j*size,size,size);
-                    dame.addMouseListener(chesslistener);
-                    gamefield.add(dame, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = dame;
+                    queen = new Queen(BLACK);
+                    queen.setBounds(pos+i*size,pos+j*size,size,size);
+                    queen.addMouseListener(chesslistener);
+                    gamefield.add(queen, JLayeredPane.DEFAULT_LAYER.intValue());
+                    referenceBackup[j][i] = queen;
                 }
 
                 if(j == 7)

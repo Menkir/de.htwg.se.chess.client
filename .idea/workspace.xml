@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d78e81df-ec3d-4ad3-8c28-895862da6230" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/client/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/BauerTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/DameTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/KoenigTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/LaeuferTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/OffizierTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/TurmTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Rook.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,8 +32,8 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/client/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="1913">
+              <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,7 +46,17 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>static</find>
+      <find>laeufer</find>
+      <find>offizier</find>
+      <find>koenig</find>
+      <find>dame</find>
     </findStrings>
+    <replaceStrings>
+      <replace>knight</replace>
+      <replace>bishop</replace>
+      <replace>king</replace>
+      <replace>queen</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -141,7 +143,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="scala" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -278,12 +280,12 @@
       <updated>1527237512879</updated>
       <workItem from="1527237538815" duration="1018000" />
       <workItem from="1527238704786" duration="587000" />
-      <workItem from="1527239476339" duration="277000" />
+      <workItem from="1527239476339" duration="457000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1882000" />
+    <option name="totallyTimeSpent" value="2062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -308,11 +310,11 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3293348" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3293348" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="CheckStyle" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="7" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293348" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -450,8 +452,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/client/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="1913">
+          <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
