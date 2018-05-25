@@ -125,11 +125,11 @@ public class Client extends JFrame {
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
 
-                Tile beige = new Tile(255, 235, 205);
+                Square beige = new Square(255, 235, 205);
                 beige.setBounds(pos+ i*size,pos+j*size,size,size);
                 beige.addMouseListener(chesslistener);
 
-                Tile brown = new Tile(139, 69, 19);
+                Square brown = new Square(139, 69, 19);
                 brown.setBounds(pos+i*size,pos+j*size,size,size);
                 brown.addMouseListener(chesslistener);
 
@@ -140,86 +140,86 @@ public class Client extends JFrame {
                 else{
                     gamefield.add(brown, JLayeredPane.DEFAULT_LAYER);
                 }
-                BauerTile bauer;
+                Pawn bauer;
                 if(j == 1 || j == 6){
                     if(j == 1)
-                        bauer = new BauerTile(WHITE);
+                        bauer = new Pawn(WHITE);
                     else
-                        bauer = new BauerTile(BLACK);
+                        bauer = new Pawn(BLACK);
                     bauer.setBounds(pos+i*size,pos+j*size,size,size);
                     bauer.addMouseListener(chesslistener);
                     gamefield.add(bauer, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = bauer;
                 }
 
-                TurmTile turm;
+                Rook turm;
                 if((i == 0 || i == 7) && j == 0){
-                    turm = new TurmTile(WHITE);
+                    turm = new Rook(WHITE);
                     turm.setBounds(pos+i*size,pos+j*size,size,size);
                     turm.addMouseListener(chesslistener);
                     gamefield.add(turm, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = turm;
                 }else if((i == 0 || i == 7) && j == 7){
-                    turm = new TurmTile(BLACK);
+                    turm = new Rook(BLACK);
                     turm.setBounds(pos+i*size,pos+j*size,size,size);
                     turm.addMouseListener(chesslistener);
                     gamefield.add(turm, JLayeredPane.DEFAULT_LAYER.intValue());
                 }
 
-                LaeuferTile laeufer;
+                Knight laeufer;
                 if((i == 1 || i == 6) && j == 0){
-                    laeufer = new LaeuferTile(WHITE);
+                    laeufer = new Knight(WHITE);
                     laeufer.setBounds(pos+i*size,pos+j*size,size,size);
                     laeufer.addMouseListener(chesslistener);
                     gamefield.add(laeufer, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = laeufer;
                 }else if((i == 1 || i == 6) && j == 7){
-                    laeufer = new LaeuferTile(BLACK);
+                    laeufer = new Knight(BLACK);
                     laeufer.setBounds(pos+i*size,pos+j*size,size,size);
                     laeufer.addMouseListener(chesslistener);
                     gamefield.add(laeufer, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = laeufer;
                 }
 
-                OffizierTile offizier;
+                Bishop offizier;
                 if((i == 2 || i == 5) && j == 0){
-                    offizier= new OffizierTile(WHITE);
+                    offizier= new Bishop(WHITE);
                     offizier.setBounds(pos+i*size,pos+j*size,size,size);
                     offizier.addMouseListener(chesslistener);
                     gamefield.add(offizier, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = offizier;
                 }else if((i == 2 || i == 5) && j == 7){
-                    offizier= new OffizierTile(BLACK);
+                    offizier= new Bishop(BLACK);
                     offizier.setBounds(pos+i*size,pos+j*size,size,size);
                     offizier.addMouseListener(chesslistener);
                     gamefield.add(offizier, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = offizier;
                 }
 
-                KoenigTile koenig;
+                King koenig;
                 if(i == 3 && j == 0){
-                    koenig = new KoenigTile(WHITE);
+                    koenig = new King(WHITE);
                     koenig.setBounds(pos+i*size,pos+j*size,size,size);
                     koenig.addMouseListener(chesslistener);
                     gamefield.add(koenig, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = koenig;
                 } else if(i == 3 && j == 7){
-                    koenig = new KoenigTile(BLACK);
+                    koenig = new King(BLACK);
                     koenig.setBounds(pos+i*size,pos+j*size,size,size);
                     koenig.addMouseListener(chesslistener);
                     gamefield.add(koenig, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = koenig;
                 }
 
-                DameTile dame;
+                Queen dame;
                 if(i == 4 && j == 0){
-                    dame = new DameTile(WHITE);
+                    dame = new Queen(WHITE);
                     dame.setBounds(pos+i*size,pos+j*size,size,size);
                     dame.addMouseListener(chesslistener);
                     gamefield.add(dame, JLayeredPane.DEFAULT_LAYER.intValue());
                     referenceBackup[j][i] = dame;
                 } else if(i == 4 && j == 7){
-                    dame = new DameTile(BLACK);
+                    dame = new Queen(BLACK);
                     dame.setBounds(pos+i*size,pos+j*size,size,size);
                     dame.addMouseListener(chesslistener);
                     gamefield.add(dame, JLayeredPane.DEFAULT_LAYER.intValue());

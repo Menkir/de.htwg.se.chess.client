@@ -3,12 +3,12 @@ package client.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class OffizierTile extends JPanel {
+public class King extends JPanel {
 
     private Image img;
 
-    public OffizierTile(int COLOR) {
-        img = new ImageIcon(getClass().getResource("../images/offizier" + COLOR+".png")).getImage();
+    public King(int COLOR) {
+        img = new ImageIcon(getClass().getResource("../images/könig" + COLOR+".png")).getImage();
         Dimension size = new Dimension(img.getWidth(this), img.getHeight(this));
         setPreferredSize(size);
         setMinimumSize(size);

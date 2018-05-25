@@ -3,11 +3,11 @@ package client.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class DameTile extends JPanel {
+public class Queen extends JPanel {
 
     private Image img;
 
-    public DameTile(int COLOR) {
+    public Queen(int COLOR) {
         img = new ImageIcon(getClass().getResource("../images/dame" + COLOR+".png")).getImage();
         Dimension size = new Dimension(img.getWidth(this), img.getHeight(this));
         setPreferredSize(size);

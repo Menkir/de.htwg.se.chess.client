@@ -3,12 +3,12 @@ package client.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class BauerTile extends JPanel {
+public class Knight extends JPanel {
 
     private Image img;
 
-    public BauerTile(int COLOR) {
-        img = new ImageIcon(getClass().getResource("../images/bauer" + COLOR+".png")).getImage();
+    public Knight(int COLOR) {
+        img = new ImageIcon(getClass().getResource("../images/läufer" + COLOR+".png")).getImage();
         Dimension size = new Dimension(img.getWidth(this), img.getHeight(this));
         setPreferredSize(size);
         setMinimumSize(size);

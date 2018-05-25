@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d78e81df-ec3d-4ad3-8c28-895862da6230" name="Default" comment="" />
+    <list default="true" id="d78e81df-ec3d-4ad3-8c28-895862da6230" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/BauerTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/DameTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/KoenigTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/LaeuferTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/OffizierTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/client/view/TurmTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/client/view/Rook.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -30,8 +40,8 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/client/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="63" column="45" lean-forward="true" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
+            <state relative-caret-position="426">
+              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,13 +68,13 @@
         <option value="$PROJECT_DIR$/src/main/scala/client/listener/ChessListener.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/Tile.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/Cover.java" />
-        <option value="$PROJECT_DIR$/src/main/scala/client/client/Client.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/TurmTile.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/BauerTile.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/DameTile.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/KoenigTile.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/LaeuferTile.java" />
         <option value="$PROJECT_DIR$/src/main/scala/client/view/OffizierTile.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/client/client/Client.java" />
       </list>
     </option>
   </component>
@@ -91,7 +101,6 @@
     <panes>
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -99,16 +108,52 @@
               <item name="de.htwg.se.chess.client" type="b2602c69:ProjectViewProjectNode" />
               <item name="de.htwg.se.chess.client" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="de.htwg.se.chess.client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="de.htwg.se.chess.client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="de.htwg.se.chess.client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="de.htwg.se.chess.client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="de.htwg.se.chess.client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="de.htwg.se.chess.client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="de.htwg.se.chess.client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="de.htwg.se.chess.client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="de.htwg.se.chess.client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="de.htwg.se.chess.client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/projects/de.htwg.se.chess.client" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -232,12 +277,13 @@
       <option name="presentableId" value="Default" />
       <updated>1527237512879</updated>
       <workItem from="1527237538815" duration="1018000" />
-      <workItem from="1527238704786" duration="268000" />
+      <workItem from="1527238704786" duration="587000" />
+      <workItem from="1527239476339" duration="277000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1286000" />
+    <option name="totallyTimeSpent" value="1882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -262,12 +308,13 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3293348" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3293348" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="CheckStyle" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="7" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3293348" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -275,7 +322,6 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.3293348" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
@@ -286,6 +332,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/client/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -330,7 +386,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/BauerTile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Pawn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
@@ -344,42 +400,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/DameTile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Queen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/KoenigTile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/King.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/LaeuferTile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Knight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/OffizierTile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Bishop.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Tile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Square.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/TurmTile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/client/view/Rook.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
@@ -394,8 +450,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/client/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="63" column="45" lean-forward="true" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
+        <state relative-caret-position="426">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
