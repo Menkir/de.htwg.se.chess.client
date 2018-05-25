@@ -54,7 +54,7 @@ public class ChessListener implements MouseListener {
                 if(posx < 0 || posy < 0 || posx > 7 || posy > 7)
                     continue;
 
-                Boolean hasOwnFigure = MicroServiceUtility.hasCurrentPlayerOccupied(posx, posy);
+                Boolean hasOwnFigure = MicroServiceUtility.hasCurrentPlayerOccupied(posy, posx);
                 if(hasOwnFigure)
                     continue;
                 Boolean enemyHasFigure = MicroServiceUtility.hasEnemyPlayerOccupied(posy, posx);
@@ -64,7 +64,6 @@ public class ChessListener implements MouseListener {
                     client.getReferenceBackup()[posy][posx].setOpaque(true);
                     continue;
                 }
-
                 JPanel panel = new JPanel();
                 panel.setBounds(100+50*posx, 100+50*posy, 50,50);
                 panel.setBackground(new Color(255, 255, 0));

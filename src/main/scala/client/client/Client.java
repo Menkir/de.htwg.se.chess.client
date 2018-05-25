@@ -1,6 +1,7 @@
 package client.client;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpResponse;
+import akka.http.scaladsl.server.util.Tuple;
 import akka.stream.ActorMaterializer;
 import akka.stream.Materializer;
 import client.listener.ButtonListener;
@@ -235,17 +236,13 @@ public class Client extends JFrame {
     }
 
     private void updateFigures(){
-        System.out.println("[updateFigures]");
         int size = 50;
         Tuple2<Integer, Integer> source = MicroServiceUtility.getSource();
         Tuple2<Integer, Integer> target = MicroServiceUtility.getTarget();
-        System.out.println("Source " + source);
-        System.out.println("Target " + target);
-        try{
-            referenceBackup[source._1][source._2].setBounds(100+target._2*size, 100+target._1*size, size, size);
-        }catch(NullPointerException e){
-            System.out.println("dough! there is no JPanel at [" + source._1 + ", " + source._2 + "]");
-        }
+        System.out.println(source + ": " + isValid(source) + ", "+ target+ ": " + isValid(target));
+        if(!isValid(source) ||!isValid(target))
+            return;
+        referenceBackup[source._1][source._2].setBounds(100+target._2*size, 100+target._1*size, size, size);
 
         //update reference backup table
         if(referenceBackup[target._1][target._2] != null){
@@ -254,6 +251,10 @@ public class Client extends JFrame {
         referenceBackup[target._1][target._2] =  referenceBackup[source._1][source._2];
         referenceBackup[source._1][source._2] = null;
 
+    }
+
+    private boolean isValid(Tuple2<Integer, Integer> t){
+        return t._1 >= 0 && t._1 <= 7 && t._2 >= 0 && t._2 <= 7;
     }
 
     public JPanel[][] getReferenceBackup() {
