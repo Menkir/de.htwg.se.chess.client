@@ -11,6 +11,7 @@ import scala.Tuple2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.concurrent.CompletionStage;
 
 import static javax.swing.SwingConstants.CENTER;
@@ -79,7 +80,24 @@ public class Client extends JFrame {
         lp.add(btnStart, new Integer(JLayeredPane.DEFAULT_LAYER+1));
 
         JMenuBar menu = new JMenuBar();
-        menu.add(new JMenu("Menu"));
+        JMenu menuentry = new JMenu("Menu");
+        JMenuItem load = new JMenuItem(new AbstractAction("load") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = javax.swing.JOptionPane.showInputDialog(null, "Username: ");
+
+            }
+        });
+        JMenuItem save = new JMenuItem(new AbstractAction("save") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        menuentry.add(load);
+        menuentry.addSeparator();
+        menuentry.add(save);
+        menu.add(menuentry);
 
         this.add(lp);
         this.setJMenuBar(menu);
