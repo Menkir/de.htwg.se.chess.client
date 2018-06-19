@@ -5,6 +5,7 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import client.client.Client;
+import client.microservice.MicroServiceUtility;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,13 +26,8 @@ public class ButtonListener implements ActionListener {
         String playerA = client.getTxtFieldContent()[0];
         String playerB = client.getTxtFieldContent()[1];
         final ActorSystem system = ActorSystem.create();
-        final String BASE_URL = "http://localhost:8080/controller/";
-        final CompletionStage<HttpResponse> responseFuture =
-                Http.get(system)
-                        .singleRequest(HttpRequest.create(BASE_URL + "start?playerOne=" + playerA + "&playerTwo=" + playerB));
-
-
-        client.draw(client.getContentPane());
+        MicroServiceUtility.start(playerA, playerB);
+        client.draw(client.getContentPane(), false);
         client.getContentPane().validate();
 
 

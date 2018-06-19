@@ -1,7 +1,6 @@
 package client.client;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpResponse;
-import akka.http.scaladsl.server.util.Tuple;
 import akka.stream.ActorMaterializer;
 import akka.stream.Materializer;
 import client.listener.ButtonListener;
@@ -12,10 +11,14 @@ import scala.Tuple2;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.CompletionStage;
 
 import static javax.swing.SwingConstants.CENTER;
 import client.view.*;
+import scala.Tuple3;
+
 public class Client extends JFrame {
     final ActorSystem system = ActorSystem.create();
     final String BASE_URL = "http://localhost:8080/controller/";
@@ -47,14 +50,15 @@ public class Client extends JFrame {
     private ChessListener chesslistener;
     private JPanel[][] referenceBackup = new JPanel[8][8];
     private JLabel ROUND, playerA, playerB;
+    private Container c;
 
-    private int WHITE = 0;
-    private int BLACK = 1;
+    private final int WHITE = 0;
+    private final int BLACK = 1;
 
     private  JTextField txtPlayerA, txtPlayerB;
 
     private Client(){
-
+        this.c = this.getContentPane();
         this.setSize(590, 620);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         lp = new JLayeredPane();
@@ -84,25 +88,53 @@ public class Client extends JFrame {
         JMenuItem load = new JMenuItem(new AbstractAction("load") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = javax.swing.JOptionPane.showInputDialog(null, "Username: ");
-
+                String session = javax.swing.JOptionPane.showInputDialog(null, "Session ID: ");
+                getLp().setVisible(false);
+                if(gamefield != null)
+                    gamefield.removeAll();
+                draw(c, true);
+                MicroServiceUtility.load(session);
+                load(MicroServiceUtility.download());
             }
         });
         JMenuItem save = new JMenuItem(new AbstractAction("save") {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                int d = javax.swing.JOptionPane.showConfirmDialog(null, "Wollen sie wirklich speichern?");
+                if(d == 0){
+                    MicroServiceUtility.save();
+                }
             }
         });
+        JMenuItem newgame = new JMenuItem(new AbstractAction("new game") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getLp().setVisible(true);
+                if(gamefield != null)
+                    gamefield.removeAll();
+            }
+        });
+
+
         menuentry.add(load);
         menuentry.addSeparator();
         menuentry.add(save);
+        menuentry.addSeparator();
+        menuentry.add(newgame);
         menu.add(menuentry);
 
         this.add(lp);
         this.setJMenuBar(menu);
         this.setResizable(false);
         this.setVisible(true);
+
+        if(MicroServiceUtility.controller_instantiated()){
+            lp.setVisible(false);
+            draw(this.getContentPane(), true);
+            load(MicroServiceUtility.download());
+            this.getContentPane().validate();
+            this.repaint();
+        }
     }
 
     public JLayeredPane getLp(){return lp;}
@@ -113,18 +145,32 @@ public class Client extends JFrame {
     }
 
 
-    public  void draw(Container c){
+    public  void draw(Container c, boolean session_loaded){
+        playerA = new JLabel();
+        playerB = new JLabel();
+        ROUND = new JLabel();
         gamefield = new JLayeredPane();
-        //ROUND = new JLabel("ROUND " + controller.round());
-        ROUND = new JLabel("ROUND " + 1);
+
+        if(session_loaded){
+            playerA.setText("Player: " + MicroServiceUtility.getPlayerA());
+            playerB.setText("Player: " + MicroServiceUtility.getPlayerB());
+            ROUND.setText("ROUND " + MicroServiceUtility.getRound());
+        }else{
+            playerA.setText("Player: " + txtPlayerA.getText());
+            playerB.setText("Player: " + txtPlayerB.getText());
+            ROUND.setText("ROUND " + 1);
+        }
         ROUND.setBounds(20, 40, 150, 30);
         ROUND.setFont(new Font("ComicScans", Font.BOLD, 30));
-        playerA = new JLabel("Player: " + MicroServiceUtility.getPlayerA(), CENTER);
         playerA.setBounds(200, 40, 200, 30);
-        playerA.setBorder(BorderFactory.createBevelBorder(1));
-        playerA.setBackground(new Color(0, 255, 68));
-        playerB = new JLabel("Player: " + MicroServiceUtility.getPlayerB(), CENTER);
         playerB.setBounds(200, 530, 200, 30);
+        playerA.setBorder(BorderFactory.createBevelBorder(1));
+        playerB.setBorder(BorderFactory.createBevelBorder(1));
+
+        if(MicroServiceUtility.getPlayerA().equals(MicroServiceUtility.getCurrentPlayer()))
+            playerA.setBackground(new Color(0, 255, 68));
+        else
+            playerB.setBackground(new Color(0, 255, 68));
 
 
         gamefield.add(ROUND);
@@ -133,11 +179,11 @@ public class Client extends JFrame {
         chesslistener = new ChessListener(this);
         gamefield.setLayout(null);
         gamefield.setPreferredSize(new Dimension(600,600));
-        build();
+        build(session_loaded);
         c.add(gamefield);
     }
 
-    private  void build(){
+    private  void build(boolean session_loaded){
         int ct = 0;
         int size = 50;
         int pos = 100;
@@ -159,6 +205,14 @@ public class Client extends JFrame {
                 else{
                     gamefield.add(brown, JLayeredPane.DEFAULT_LAYER);
                 }
+
+                if(session_loaded){
+                    if(j == 7)
+                        ct += 2;
+                    else ++ct;
+                    continue;
+                }
+
                 Pawn bauer;
                 if(j == 1 || j == 6){
                     if(j == 1)
@@ -257,18 +311,18 @@ public class Client extends JFrame {
         int size = 50;
         Tuple2<Integer, Integer> source = MicroServiceUtility.getSource();
         Tuple2<Integer, Integer> target = MicroServiceUtility.getTarget();
-        System.out.println(source + ": " + isValid(source) + ", "+ target+ ": " + isValid(target));
         if(!isValid(source) ||!isValid(target))
             return;
-        referenceBackup[source._1][source._2].setBounds(100+target._2*size, 100+target._1*size, size, size);
+        referenceBackup[source._2][source._1].setBounds(100+target._2*size, 100+target._1*size, size, size);
 
         //update reference backup table
-        if(referenceBackup[target._1][target._2] != null){
-            gamefield.remove(referenceBackup[target._1][target._2]); //remove figure jpanel
+        if(referenceBackup[target._2][target._1] != null){
+            gamefield.remove(referenceBackup[target._2][target._2]); //remove figure jpanel
         }
-        referenceBackup[target._1][target._2] =  referenceBackup[source._1][source._2];
-        referenceBackup[source._1][source._2] = null;
-
+        referenceBackup[target._2][target._1] =  referenceBackup[source._1][source._2];
+        referenceBackup[source._2][source._1] = null;
+        this.c.repaint();
+        this.c.revalidate();
     }
 
     private boolean isValid(Tuple2<Integer, Integer> t){
@@ -279,20 +333,70 @@ public class Client extends JFrame {
         return referenceBackup;
     }
 
+    private void load(Map<String, ArrayList<Tuple3<String, Integer, Integer>>> m){
+        //clean reference backup table
+        for(int i = 0; i < referenceBackup.length; ++i){
+            for(int j = 0; j < referenceBackup.length; ++j){
+                if(referenceBackup[i][j] != null)
+                gamefield.remove(referenceBackup[i][j]);
+            }
+        }
+        //set new playerNames
+        String pa = MicroServiceUtility.getPlayerA();
+        String pb = MicroServiceUtility.getPlayerB();
+        this.playerA.setText("Player: " + pa);
+        this.playerB.setText("Player: " + pb);
+        this.ROUND.setText("ROUND " + MicroServiceUtility.getRound());
+
+        set_figure_jpanel(m, WHITE, pa);
+        set_figure_jpanel(m, BLACK, pb);
+
+        this.getContentPane().repaint();
+        this.getContentPane().validate();
+    }
+
+
+    private void set_figure_jpanel(Map<String, ArrayList<Tuple3<String, Integer, Integer>>> m, int color, String player){
+
+        for(int i = 0; i < m.get(player).size(); ++i){
+            Object e = m.get(player).get(i);
+            String designator= (String)((ArrayList) e).get(0);
+            Integer y= (Integer)((ArrayList) e).get(1);
+            Integer x= (Integer)((ArrayList) e).get(2);
+            switch(color){
+                case WHITE: referenceBackup[x][y] = getFigure(designator, WHITE);
+                    break;
+                case BLACK: referenceBackup[x][y] = getFigure(designator, BLACK);
+                    break;
+            }
+            referenceBackup[x][y].setBounds(100+x*50,100+y*50,50,50);
+            referenceBackup[x][y].addMouseListener(chesslistener);
+            referenceBackup[x][y].validate();
+            gamefield.add(referenceBackup[x][y], JLayeredPane.DEFAULT_LAYER.intValue());
+        }
+
+    }
+
+    private JPanel getFigure(String designator, int color){
+        switch (designator){
+            case "B":
+                return new Pawn(color);
+            case "T":
+                return new Rook(color);
+            case "K":
+                return new King(color);
+            case "D":
+                return new Queen(color);
+            case "L":
+                return new Knight(color);
+            case "O":
+                return new Bishop(color);
+        }
+        return null;
+    }
+
     public static void main(String[] args){
         new Client();
     }
 
-    public void print(){
-        for(int i = 0; i< 8; ++i){
-            for(int j = 0; j< 8; ++j){
-                try{
-                    System.out.print("full ");
-                }catch(NullPointerException e){
-                    System.out.print("null ");
-                }
-            }
-            System.out.println();
-        }
-    }
 }
