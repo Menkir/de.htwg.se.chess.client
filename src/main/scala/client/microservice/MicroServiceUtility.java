@@ -166,14 +166,14 @@ public final class MicroServiceUtility {
 
     public static  void load(String session){
         Http.get(system)
-                .singleRequest(HttpRequest.create(MYSQL_URL + "load?id=" + session))
+                .singleRequest(HttpRequest.create(MYSQL_URL + "load?name=" + session))
         .toCompletableFuture()
         .join();
     }
 
-    public static  void save() {
+    public static  void save(String session) {
         Http.get(system)
-                .singleRequest(HttpRequest.create(MYSQL_URL + "save"))
+                .singleRequest(HttpRequest.create(MYSQL_URL + "save?name=" + session))
         .toCompletableFuture()
         .join();
     }
@@ -185,13 +185,13 @@ public final class MicroServiceUtility {
         Unmarshaller<ByteString,TreeMap> unmarshal = Jackson.byteStringUnmarshaller(TreeMap.class);
         JsonEntityStreamingSupport support = EntityStreamingSupport.json();
 
-        Source<TreeMap, Object> lel =
+        Source<TreeMap, Object> data =
                 r.entity().getDataBytes()
                 .via(support.framingDecoder())
                 .mapAsync(1, bs -> unmarshal.unmarshal(bs, materializer));
 
         Map<String, ArrayList<Tuple3<String, Integer, Integer>>> m = new TreeMap<>();
-        lel.runForeach(
+        data.runForeach(
                 e ->e.forEach(
                         (k, v) -> m.put((String) k, ((ArrayList<Tuple3<String, Integer, Integer>>) v))), materializer)
                         .toCompletableFuture()
