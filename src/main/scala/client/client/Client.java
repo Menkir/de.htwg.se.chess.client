@@ -24,6 +24,7 @@ public class Client extends JFrame {
     final String BASE_URL = "http://localhost:8080/controller/";
     final Materializer materializer = ActorMaterializer.create(system);
     CompletionStage<HttpResponse> responseFuture;
+
     public void update(){
         int round = MicroServiceUtility.getRound();
         String playerAName = MicroServiceUtility.getPlayerA();
@@ -88,7 +89,7 @@ public class Client extends JFrame {
         JMenuItem load = new JMenuItem(new AbstractAction("load") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String session = javax.swing.JOptionPane.showInputDialog(null, "Session ID: ");
+                String session = javax.swing.JOptionPane.showInputDialog(null, "Name: ");
                 getLp().setVisible(false);
                 if(gamefield != null)
                     gamefield.removeAll();
@@ -100,9 +101,9 @@ public class Client extends JFrame {
         JMenuItem save = new JMenuItem(new AbstractAction("save") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int d = javax.swing.JOptionPane.showConfirmDialog(null, "Wollen sie wirklich speichern?");
-                if(d == 0){
-                    MicroServiceUtility.save();
+                String session = javax.swing.JOptionPane.showInputDialog(null, "Name: ");
+                if(!session.isEmpty()){
+                    MicroServiceUtility.save(session);
                 }
             }
         });
@@ -222,7 +223,7 @@ public class Client extends JFrame {
                     bauer.setBounds(pos+i*size,pos+j*size,size,size);
                     bauer.addMouseListener(chesslistener);
                     gamefield.add(bauer, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = bauer;
+                    referenceBackup[i][j] = bauer;
                 }
 
                 Rook turm;
@@ -231,7 +232,7 @@ public class Client extends JFrame {
                     turm.setBounds(pos+i*size,pos+j*size,size,size);
                     turm.addMouseListener(chesslistener);
                     gamefield.add(turm, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = turm;
+                    referenceBackup[i][j] = turm;
                 }else if((i == 0 || i == 7) && j == 7){
                     turm = new Rook(BLACK);
                     turm.setBounds(pos+i*size,pos+j*size,size,size);
@@ -245,13 +246,13 @@ public class Client extends JFrame {
                     knight.setBounds(pos+i*size,pos+j*size,size,size);
                     knight.addMouseListener(chesslistener);
                     gamefield.add(knight, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = knight;
+                    referenceBackup[i][j] = knight;
                 }else if((i == 1 || i == 6) && j == 7){
                     knight = new Knight(BLACK);
                     knight.setBounds(pos+i*size,pos+j*size,size,size);
                     knight.addMouseListener(chesslistener);
                     gamefield.add(knight, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = knight;
+                    referenceBackup[i][j] = knight;
                 }
 
                 Bishop bishop;
@@ -260,13 +261,13 @@ public class Client extends JFrame {
                     bishop.setBounds(pos+i*size,pos+j*size,size,size);
                     bishop.addMouseListener(chesslistener);
                     gamefield.add(bishop, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = bishop;
+                    referenceBackup[i][j] = bishop;
                 }else if((i == 2 || i == 5) && j == 7){
                     bishop= new Bishop(BLACK);
                     bishop.setBounds(pos+i*size,pos+j*size,size,size);
                     bishop.addMouseListener(chesslistener);
                     gamefield.add(bishop, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = bishop;
+                    referenceBackup[i][j] = bishop;
                 }
 
                 King king;
@@ -275,13 +276,13 @@ public class Client extends JFrame {
                     king.setBounds(pos+i*size,pos+j*size,size,size);
                     king.addMouseListener(chesslistener);
                     gamefield.add(king, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = king;
+                    referenceBackup[i][j] = king;
                 } else if(i == 3 && j == 7){
                     king = new King(BLACK);
                     king.setBounds(pos+i*size,pos+j*size,size,size);
                     king.addMouseListener(chesslistener);
                     gamefield.add(king, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = king;
+                    referenceBackup[i][j] = king;
                 }
 
                 Queen queen;
@@ -290,13 +291,13 @@ public class Client extends JFrame {
                     queen.setBounds(pos+i*size,pos+j*size,size,size);
                     queen.addMouseListener(chesslistener);
                     gamefield.add(queen, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = queen;
+                    referenceBackup[i][j] = queen;
                 } else if(i == 4 && j == 7){
                     queen = new Queen(BLACK);
                     queen.setBounds(pos+i*size,pos+j*size,size,size);
                     queen.addMouseListener(chesslistener);
                     gamefield.add(queen, JLayeredPane.DEFAULT_LAYER.intValue());
-                    referenceBackup[j][i] = queen;
+                    referenceBackup[i][j] = queen;
                 }
 
                 if(j == 7)
@@ -311,6 +312,7 @@ public class Client extends JFrame {
         int size = 50;
         Tuple2<Integer, Integer> source = MicroServiceUtility.getSource();
         Tuple2<Integer, Integer> target = MicroServiceUtility.getTarget();
+        //System.out.println("src: " + source + " trgt: " + target);
         if(!isValid(source) ||!isValid(target))
             return;
         referenceBackup[source._2][source._1].setBounds(100+target._2*size, 100+target._1*size, size, size);
@@ -357,16 +359,15 @@ public class Client extends JFrame {
 
 
     private void set_figure_jpanel(Map<String, ArrayList<Tuple3<String, Integer, Integer>>> m, int color, String player){
-
         for(int i = 0; i < m.get(player).size(); ++i){
             Object e = m.get(player).get(i);
             String designator= (String)((ArrayList) e).get(0);
             Integer y= (Integer)((ArrayList) e).get(1);
             Integer x= (Integer)((ArrayList) e).get(2);
             switch(color){
-                case WHITE: referenceBackup[x][y] = getFigure(designator, WHITE);
+                case WHITE: referenceBackup[x][y] = getFigure(designator, color);
                     break;
-                case BLACK: referenceBackup[x][y] = getFigure(designator, BLACK);
+                case BLACK: referenceBackup[x][y] = getFigure(designator, color);
                     break;
             }
             referenceBackup[x][y].setBounds(100+x*50,100+y*50,50,50);
@@ -397,6 +398,21 @@ public class Client extends JFrame {
 
     public static void main(String[] args){
         new Client();
+    }
+
+    private void printref(){
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                try{
+                    referenceBackup[j][i].validate();
+                    System.out.print("F ");
+                }catch(NullPointerException e){
+                    System.out.print("_ ");
+                }
+
+            }
+            System.out.println();
+        }
     }
 
 }
