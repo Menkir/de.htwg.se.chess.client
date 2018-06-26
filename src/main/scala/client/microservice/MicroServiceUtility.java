@@ -23,8 +23,9 @@ public final class MicroServiceUtility {
 
     private static final ActorSystem system = ActorSystem.create();
     private static final Materializer materializer = ActorMaterializer.create(system);
-    private static final String BASE_URL = "http://localhost:8080/controller/";
-    private static final String MYSQL_URL = "http://localhost:8080/slick/";
+    private static final String HOST = "http://localhost:8080";
+    private static final String BASE_URL = HOST + "/controller/";
+    private static final String MYSQL_URL = HOST + "/slick/";
     private static String makePrimitiveRequest(String relative){
         return Http.get(system)
                 .singleRequest(HttpRequest.create(BASE_URL + relative))
